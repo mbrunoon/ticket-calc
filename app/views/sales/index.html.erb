@@ -1,0 +1,23 @@
+<h1>Sales in <%= @month %>/<%= @year %> </h1>
+
+<%= form_with url: "/sales", method: :get do |form| %>
+  <%= form.date_select :sales_date, order: [:month, :year] %>
+  <%= form.submit "search" %>
+<% end %>
+
+<br >
+
+ <table>
+    <tr>
+        <th>Date</th>
+        <th>Total</th>
+        <th>Difference</th>
+    </tr>
+    <% @daily_sales.each do |key, val| %>
+        <tr>
+            <td><%= key %></td>
+            <td><%= val[:total] %></td>
+            <td><%= val[:difference] %></td>
+        </tr>
+    <% end %>
+</table> 
